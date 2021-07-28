@@ -28,4 +28,4 @@ The training script should be set up as follows: \
     MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER True \
     MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER True  
 
-The informative Transformer model (Transformer+BPL+SA) in [BaiduYun]https://pan.baidu.com/s/1rDwW1qIzQ9YJEOYLDIj23Q (Password: azwk).
+The informative Transformer model (Transformer+BPL+SA) in [BaiduYun](https://pan.baidu.com/s/1rDwW1qIzQ9YJEOYLDIj23Q) (Password: azwk).
