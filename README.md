@@ -15,7 +15,7 @@ This anonymous repository contains code for the paper "From General to Specific:
 <div align=center><img width="994" height="774" src=demo/vis_res_supp1.png/></div>
 
 ## Training and Testing 
-We write some [scripts](https://github.com/nobody-y/SSG-G2S/tree/main/scripts) for training and testing.
+We write some [scripts](https://github.com/ZhuGeKongKong/SSG-G2S/tree/main/scripts) for training and testing.
 The training process is divided into two stages:
 ### Training the general model
 The training script should be set up as follows: \
