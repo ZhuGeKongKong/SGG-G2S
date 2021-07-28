@@ -17,15 +17,15 @@ This anonymous repository contains code for the paper "From General to Specific:
 ## Training and Testing 
 We write some [scripts](https://github.com/ZhuGeKongKong/SSG-G2S/tree/main/scripts) for training and testing.
 The training process is divided into two stages:
-### Training the general model
+### Training the common SGG model
 The training script should be set up as follows: \
     MODEL.PRETRAINED_MODEL_CKPT '' \
     MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER False \
     MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER False  
-### Finetuning the specific model
+### Finetuning the informative SGG model
 The training script should be set up as follows: \
     MODEL.PRETRAINED_MODEL_CKPT 'path to the general model' \
     MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER True \
     MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER True  
 
-
+The informative Transformer model (Transformer+BPL+SA) in [BaiduYun]https://pan.baidu.com/s/1rDwW1qIzQ9YJEOYLDIj23Q (Password: azwk).
