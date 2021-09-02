@@ -126,7 +126,6 @@ def main():
         data_loaders_val = make_data_loader(cfg, mode="val", is_distributed=distributed)
     else:
         data_loaders_val = make_data_loader(cfg, mode="test", is_distributed=distributed)
-    data_loaders_val = make_data_loader_val(cfg, mode="train", is_distributed=distributed)
     for output_folder, dataset_name, data_loader_val in zip(output_folders, dataset_names, data_loaders_val):
         inference(
             cfg,
