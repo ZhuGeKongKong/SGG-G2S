@@ -303,17 +303,6 @@ def load_image_filenames(img_dir, image_file):
     return fns, img_info
 
 
-def clip_to_image(bbox, size):
-    TO_REMOVE = 1
-    bbox = bbox / BOX_SCALE * max(size[0], size[1])
-    bbox[:, 0] = np.clip(bbox[:, 0], a_min=0, a_max=size[0] - TO_REMOVE)
-    bbox[:, 1] = np.clip(bbox[:, 1], a_min=0, a_max=size[1] - TO_REMOVE)
-    bbox[:, 2] = np.clip(bbox[:, 2], a_min=0, a_max=size[0] - TO_REMOVE)
-    bbox[:, 3] = np.clip(bbox[:, 3], a_min=0, a_max=size[1] - TO_REMOVE)
-    box = bbox
-    keep = (box[:, 3] > box[:, 1]) & (box[:, 2] > box[:, 0])
-    return keep
-
 
 def load_graphs(roidb_file, split, num_im, num_val_im, filter_empty_rels, filter_non_overlap,
                 ind_to_predicates=None, img_info=None, with_clean_classifier=False, get_state=False):
@@ -487,13 +476,6 @@ def load_graphs(roidb_file, split, num_im, num_val_im, filter_empty_rels, filter
             # boxes_i = boxes_i[retain_box]
             # gt_classes_i = gt_classes_i[retain_box]
             # gt_attributes_i = gt_attributes_i[retain_box]
-
-            img_size = [img_info[image_index[i]]['width'], img_info[image_index[i]]['height']]
-            keep = clip_to_image(boxes_i, img_size)
-            if keep.sum() == 0:
-                print('ignore img index: ', image_index[i])
-                split_mask[image_index[i]] = 0
-                continue
 
         boxes.append(boxes_i)
         gt_classes.append(gt_classes_i)
