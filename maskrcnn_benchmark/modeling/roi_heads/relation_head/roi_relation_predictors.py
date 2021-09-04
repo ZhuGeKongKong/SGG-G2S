@@ -20,7 +20,7 @@ from .utils_relation import layer_init, get_box_info, get_box_pair_info
 from maskrcnn_benchmark.data import get_dataset_statistics
 from scipy.special import softmax as spysoftmax
 from maskrcnn_benchmark.layers.gcn.gcn_layers import GCN
-from maskrcnn_benchmark.layers.gcn._utils import adj_laplacian
+from maskrcnn_benchmark.layers.gcn._utils import adj_normalize
 import json
 
 @registry.ROI_RELATION_PREDICTOR.register("TransformerPredictor")
@@ -349,13 +349,13 @@ class TransformerTransferPredictor(nn.Module):
             pred_adj_np[0, 0] = 1.0
             # adj_i_j means the baseline outputs category j, but the ground truth is i.
             pred_adj_np = pred_adj_np / (pred_adj_np.sum(-1)[:, None] + 1e-8)
-            pred_adj_np = adj_laplacian(pred_adj_np)
-            self.pred_adj_lap = torch.from_numpy(pred_adj_np).float().to(self.devices)
+            pred_adj_np = adj_normalize(pred_adj_np)
+            self.pred_adj_nor = torch.from_numpy(pred_adj_np).float().to(self.devices)
             # self.pred_adj_layer_clean = nn.Linear(self.num_rel_cls, self.num_rel_cls, bias=False)
             # #layer_init(self.pred_adj_layer_clean, xavier=True)
             # with torch.no_grad():
             #     self.pred_adj_layer_clean.weight.copy_(torch.eye(self.num_rel_cls,dtype=torch.float), non_blocking=True)
-                #self.pred_adj_layer_clean.weight.copy_(self.pred_adj_lap, non_blocking=True)
+                #self.pred_adj_layer_clean.weight.copy_(self.pred_adj_nor, non_blocking=True)
                 
     def forward(self, proposals, rel_pair_idxs, rel_labels, rel_binarys, roi_features, union_features, logger=None):
         """
@@ -418,7 +418,7 @@ class TransformerTransferPredictor(nn.Module):
             rel_dists = rel_dists_clean
 
         if self.with_transfer:
-            rel_dists = (self.pred_adj_lap @ rel_dists.T).T
+            rel_dists = (self.pred_adj_nor @ rel_dists.T).T
 
         add_losses = {}
         # if self.with_knowdist:
@@ -580,8 +580,8 @@ class MotifPredictor(nn.Module):
                 pred_adj_np[0, 0] = 1.0
                 # adj_i_j means the baseline outputs category j, but the ground truth is i.
                 pred_adj_np = pred_adj_np / (pred_adj_np.sum(-1)[:, None] + 1e-8)
-                pred_adj_np = adj_laplacian(pred_adj_np)
-                self.pred_adj_lap = torch.from_numpy(pred_adj_np).float().to(self.devices)
+                pred_adj_np = adj_normalize(pred_adj_np)
+                self.pred_adj_nor = torch.from_numpy(pred_adj_np).float().to(self.devices)
 
     def forward(self, proposals, rel_pair_idxs, rel_labels, rel_binarys, roi_features, union_features, logger=None):
         """
@@ -649,7 +649,7 @@ class MotifPredictor(nn.Module):
                 freq_dists_bias_clean = F.dropout(freq_dists_bias_clean, 0.3, training=self.training)
                 rel_dists_clean = rel_dists_clean + freq_dists_bias_clean
             if self.with_transfer:
-                rel_dists_clean = (self.pred_adj_lap @ rel_dists_clean.T).T
+                rel_dists_clean = (self.pred_adj_nor @ rel_dists_clean.T).T
 
             rel_dists = rel_dists_clean
 
@@ -745,8 +745,8 @@ class VCTreePredictor(nn.Module):
                 pred_adj_np[0, 0] = 1.0
                 # adj_i_j means the baseline outputs category j, but the ground truth is i.
                 pred_adj_np = pred_adj_np / (pred_adj_np.sum(-1)[:, None] + 1e-8)
-                pred_adj_np = adj_laplacian(pred_adj_np)
-                self.pred_adj_lap = torch.from_numpy(pred_adj_np).float().to(self.devices)
+                pred_adj_np = adj_normalize(pred_adj_np)
+                self.pred_adj_nor = torch.from_numpy(pred_adj_np).float().to(self.devices)
 
     def forward(self, proposals, rel_pair_idxs, rel_labels, rel_binarys, roi_features, union_features, logger=None):
         """
@@ -810,7 +810,7 @@ class VCTreePredictor(nn.Module):
             frq_dists_clean = F.dropout(frq_dists_clean, 0.3, training=self.training)
             rel_dists_clean = ctx_dists_clean + frq_dists_clean
             if self.with_transfer:
-                rel_dists_clean = (self.pred_adj_lap @ rel_dists_clean.T).T
+                rel_dists_clean = (self.pred_adj_nor @ rel_dists_clean.T).T
             rel_dists = rel_dists_clean
         obj_dists = obj_dists.split(num_objs, dim=0)
         rel_dists = rel_dists.split(num_rels, dim=0)
