@@ -9,7 +9,6 @@ from maskrcnn_benchmark.structures.boxlist_ops import cat_boxlist
 from maskrcnn_benchmark.modeling.box_coder import BoxCoder
 from .utils_relation import obj_prediction_nms
 import numpy as np
-from maskrcnn_benchmark.layers.gcn._utils import adj_laplacian
 class PostProcessor(nn.Module):
     """
     From a set of classification scores, box regression and proposals,
