@@ -11,7 +11,7 @@ def normalize(mx):
     mx_output = r_mat_inv.dot(mx)
     return mx_output
 
-def adj_laplacian(adj):
+def adj_normalize(adj):
     #adj = adj + adj.T * (adj.T > adj) - adj * (adj.T > adj)
     # adj = adj + adj.T
     adj = normalize(adj + np.eye(adj.shape[0]))
