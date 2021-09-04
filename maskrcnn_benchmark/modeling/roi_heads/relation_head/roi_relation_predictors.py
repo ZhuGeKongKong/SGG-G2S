@@ -126,8 +126,6 @@ class TransformerPredictor(nn.Module):
             freq_dists_bias = F.dropout(freq_dists_bias, 0.3, training=self.training)
             rel_dists = rel_dists + freq_dists_bias
 
-        # rel_dists_t = self.pred_ajd_lap @ rel_dists.T
-        # rel_dists = rel_dists_t.T
 
         obj_dists = obj_dists.split(num_objs, dim=0)
         rel_dists = rel_dists.split(num_rels, dim=0)
