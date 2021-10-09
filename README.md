@@ -4,7 +4,8 @@
 [![Python](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/)
 ![PyTorch](https://img.shields.io/badge/pytorch-1.2.0-%237732a8)
 
-This repository contains code for the paper "From General to Specific: Informative Scene Graph Generation via Balance Adjustment". This code is based on [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch).
+This repository contains code for the paper "From General to Specific: Informative Scene Graph Generation via Balance Adjustment". This code is based on [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch). The scene graph generation task aims to generate a set of triplet <subject, predicate, object> and construct a graph structure for an image.
+<div align=center><img width="672" height="508" src=demo/framework_generalSGG.png/></div>
 
 ## Framework
 <div align=center><img width="672" height="508" src=demo/framework_G2ST.png/></div>
