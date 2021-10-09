@@ -8,6 +8,7 @@ This repository contains code for the paper "From General to Specific: Informati
 
 ## Framework
 <div align=center><img width="672" height="508" src=demo/framework_G2ST.png/></div>
+
 ## Abstract
 The scene graph generation (SGG) task aims to detect visual relationship triplets, i.e., subject, predicate, object, in an image, providing a structural vision layout for scene understanding. However, current models are stuck in common predicates, e.g., ``on'' and ``at'', rather than informative ones, e.g., ``standing on'' and ``looking at'', resulting in the loss of precise information and overall performance. If a model only uses ``stone on road'' rather than ``blocking'' to describe an image, it is easy to misunderstand the scene. We argue that this phenomenon is caused by two key imbalances between informative predicates and common ones, i.e., semantic space level imbalance and training sample level imbalance. To tackle this problem, we propose BA-SGG, a simple yet effective SGG framework based on balance adjustment but not the conventional distribution fitting. It integrates two components: Semantic Adjustment (SA) and Balanced Predicate Learning (BPL), respectively for adjusting these imbalances. Benefited from the model-agnostic process, our method is easily applied to the state-of-the-art SGG models and significantly improves the SGG performance. Our method achieves 14.3%, 8.0%, and 6.1% higher Mean Recall (mR) than that of the Transformer model at three scene graph generation sub-tasks on Visual Genome, respectively. 
 
@@ -35,13 +36,17 @@ Feel free to ping me if you encounter trouble getting it to work!
 ## Bibtex
 
 ```
-@ARTICLE{9376912,
-  author={Guo, Yuyu and Gao, Lianli and Song, Jingkuan and Wang, Peng and Sebe, Nicu and Shen, Heng Tao and Li, Xuelong},
-  journal={IEEE Transactions on Cybernetics}, 
-  title={Relation Regularized Scene Graph Generation}, 
-  year={2021},
-  volume={},
-  number={},
-  pages={1-12},
-  doi={10.1109/TCYB.2021.3052522}}
+@inproceedings{sgg:g2s,
+  author    = {Yuyu Guo and
+               Lianli Gao and
+               Xuanhan Wang and
+               Yuxuan Hu and
+               Xing Xu and
+               Xu Lu and
+               Heng Tao Shen and
+               Jingkuan Song},
+  title     = {From General to Specific: Informative Scene Graph Generation via Balance Adjustment},
+  booktitle = {ICCV},
+  year      = {2021}
+}
 ```
