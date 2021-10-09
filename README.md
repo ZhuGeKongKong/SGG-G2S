@@ -29,7 +29,7 @@ The training script should be set up as follows: \
     MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER True \
     MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER True  
 
-# Help
+## Help
 
 Feel free to ping me if you encounter trouble getting it to work!
 
