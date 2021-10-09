@@ -32,7 +32,7 @@ The training script should be set up as follows: \
 
 ## Help
 
-Feel free to ping me if you encounter trouble getting it to work!
+Feel free to ping [me](yuyuguo1994@gmail.com) if you encounter trouble getting it to work!
 
 ## Bibtex
 
