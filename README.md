@@ -30,6 +30,8 @@ The training script should be set up as follows: \
     MODEL.PRETRAINED_MODEL_CKPT 'path to the common SGG model' \
     MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER True \
     MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER True  
+### Model
+The trained transformer model can be download from [BaiDuYun](https://pan.baidu.com/s/1vbsFDIHI57o9HxIv5BJiZA) (Password: 5u2o)
 
 ## Help
 
