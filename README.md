@@ -23,8 +23,8 @@ The training process is divided into two stages:
 ### Training the common SGG model
 The training script should be set up as follows: \
     MODEL.PRETRAINED_MODEL_CKPT '' \
-    MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER False \
-    MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER False  
+    MODEL.ROI_RELATION_HEAD.WITH_CLEAN_CLASSIFIER False \   (This is for BPL)
+    MODEL.ROI_RELATION_HEAD.WITH_TRANSFER_CLASSIFIER False  (This is for SA)
 ### Finetuning the informative SGG model
 The training script should be set up as follows: \
     MODEL.PRETRAINED_MODEL_CKPT 'path to the common SGG model' \
